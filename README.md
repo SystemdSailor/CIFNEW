@@ -13,7 +13,7 @@
 
 
 
-## 功能列表
+## Feature list
 - [x] Article release: Article release, modification, deletion
 - [x] Article retrieval: supports searching by content, author, time region, node classification information (node ID, node name), and tag content
 - [x] Node Index Tree: Select preset nodes, add nodes, update nodes, add to node list (local IndexedDB storage)

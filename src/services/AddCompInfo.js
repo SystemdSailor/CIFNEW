@@ -6,12 +6,6 @@ const DB_VERSION = 3;
 const initDB = async (data) => {
   const db = await openDB(DB_NAME, DB_VERSION, {
     upgrade(db, oldVersion, newVersion, transaction) {
-      // 删除不存在的数据表
-      for (const storeName of db.objectStoreNames) {
-        if (!data[storeName]) {
-          db.deleteObjectStore(storeName);
-        }
-      }
       // 创建新的对象仓库
       for (const key in data) {
         if (!db.objectStoreNames.contains(key)) {

@@ -3,16 +3,19 @@ import { openDB } from "idb";
 const DB_NAME = 'NewprovinceDB2';
 const DB_VERSION = 3;
 
-
 const initDB = async (data) => {
   const db = await openDB(DB_NAME, DB_VERSION, {
-    upgrade(db) {
-      // 获取所有省份并为每个省份创建一个对象仓库
+    upgrade(db, oldVersion, newVersion, transaction) {
+      // 删除不存在的数据表
+      for (const storeName of db.objectStoreNames) {
+        if (!data[storeName]) {
+          db.deleteObjectStore(storeName);
+        }
+      }
+      // 创建新的对象仓库
       for (const key in data) {
-        if (data.hasOwnProperty(key)) {
-          if (!db.objectStoreNames.contains(key)) {
-            db.createObjectStore(key, { keyPath: 'id' });
-          }
+        if (!db.objectStoreNames.contains(key)) {
+          db.createObjectStore(key, { keyPath: 'id' });
         }
       }
     },
@@ -20,24 +23,21 @@ const initDB = async (data) => {
   return db;
 };
 
-// 将数据存储到IndexedDB
 const storeData = async (jsonData) => {
   try {
     const db = await initDB(jsonData);
-    // 存储每个省份的数据
     for (const [province, items] of Object.entries(jsonData)) {
-      const tx = db.transaction(province, 'readwrite');
-      const store = tx.objectStore(province);
-      // 清除现有数据
-      await store.clear();
-      // 存储新数据
-      for (const item of items) {
-        await store.add(item);
+      try {
+        const tx = db.transaction(province, 'readwrite');
+        const store = tx.objectStore(province);
+        const promises = items.map(item => store.put(item));
+        await Promise.all(promises);
+        console.log(`${province} 的数据已存储`);
+      } catch (error) {
+        console.error(`${province} 的数据存储失败:`, error);
       }
-      await tx.done;
-      console.log(`${province}的数据已存储`);
     }
-    console.log('所有数据已成功存储到IndexedDB');
+    console.log('所有数据已成功存储到 IndexedDB');
   } catch (error) {
     console.error('存储数据时出错:', error);
   }

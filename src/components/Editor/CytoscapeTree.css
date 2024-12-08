@@ -1,0 +1,37 @@
+.btwrapper{
+    position: absolute; 
+    top: 0;
+    right:0%;
+    width: 60px;
+    height: 100px;
+  }
+  
+  .svg-shape {
+    position: absolute; 
+    top: 0; 
+    left:50.1%;
+    width: 60px;
+    height: 100px;
+    background-color: white;
+    /* background: linear-gradient(to right, rgb(64, 69, 116, 1), rgb(130, 130, 160, 1)); */
+    clip-path: path('M25 1 7 1A6 6 90 001 7L1 51A6 6 90 007 57H19A6 6 90 0125 62Z');
+    
+  }
+
+  .inner-svg {
+    position: absolute;
+    top: 15%; 
+    left:0;
+    /* width: 60px;
+    height: 100px; */
+  }
+  
+  .rectangle-below {
+    position: absolute; 
+    top: 1%; 
+    right: 0;
+    width: 5px;
+    height: 100vh;
+    background-color: white; 
+    /* background: linear-gradient(to right,  rgb(130, 130, 160, 1),white); */
+  }

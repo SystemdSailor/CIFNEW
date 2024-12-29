@@ -26,3 +26,15 @@
 - [ ] Archiving function
 - [ ] ……
 
+Here's the English version:
+
+---
+
+## 💬 Contact & Contributions
+
+If you encounter any issues or have suggestions, feel free to reach out to me through any of the following:  
+- GitHub Issues: Submit an issue on the [Issues page](https://github.com/SystemdSailor/CIFNEW/issues)  
+- Other: You’re welcome to contact me via any method that works for you.
+
+Contributions are always welcome, and your support is greatly appreciated! 🎉
+

@@ -26,9 +26,7 @@
 - [ ] Archiving function
 - [ ] ……
 
-Here's the English version:
 
----
 
 ## 💬 Contact & Contributions
 

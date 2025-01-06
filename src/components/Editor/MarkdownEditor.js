@@ -13,6 +13,7 @@ import {
   faProjectDiagram,
 } from '@fortawesome/free-solid-svg-icons';
 import gunService from '../../services/gunDB';
+import ipfsService from '../../services/ipfsDB';
 import CytoscapeTree from './CytoscapeTree';
 import { useIndexedDB } from "../../services/useIndexedDB";
 
@@ -129,6 +130,8 @@ const MarkdownEditor = () => {
 
     try {
       await gunService.saveMarkdown(currentDocId, content, isPublic, tags, category, title); 
+      let cid = await ipfsService.saveMarkdown(currentDocId, content, isPublic, tags, category, title); 
+      console.log("article key in ipfs:",cid);// TODO 显示保存后的提示信息
       showMessage('success', isPublic ? '文档已保存并发布' : '文档已保存');
       loadDocuments(); // 刷新文档列表
     } catch (err) {

@@ -9,11 +9,6 @@ import gunService from '../../services/gunDB';
 import { useIndexedDB } from "../../services/useIndexedDB";
 import Select from 'react-select'; 
 
-import { openDB } from 'idb'; 
-const DB_NAME = 'NewprovinceDB2';
-const DB_VERSION = 3;
-
-
 cytoscape.use(dagre);
 cytoscape.use(cxtmenu);
 
@@ -82,7 +77,7 @@ const CytoscapeTree = () => {
     const [options2, setOptions2] = useState([]);
     const [showAlert, setShowAlert] = useState(true);
 
-    useEffect(() => {// 读取IndexedDB Comp数据
+    useEffect(() => {// 读取Company数据
         PerInsertAllDBData();
     }, []);
 
@@ -91,7 +86,7 @@ const CytoscapeTree = () => {
         const performDBOperations = async () => {
           try {
             setIndexedDBDATA(await db.getAll("myIndexedDBDATA"));
-            console.log("获取所有数据 setIndexedDBDATA:", await db.getAll("myIndexedDBDATA"));
+            console.log("获取所收藏节点数据 setIndexedDBDATA:", await db.getAll("myIndexedDBDATA"));
           } catch (error) {
             console.error("Error performing DB operations:", error);
           }
@@ -291,10 +286,7 @@ const CytoscapeTree = () => {
     
     const readTableData = async (TableName,parentId) => {
         try {
-            const db = await openDB(DB_NAME, DB_VERSION);
-            const tx = db.transaction(TableName, 'readonly');
-            const store = tx.objectStore(TableName);
-            const items = await store.getAll();
+            const items = window.jsonData[TableName];
             return items;
         } catch (error) {
             console.error(`读取${TableName}数据时出错:`, error);
@@ -304,8 +296,7 @@ const CytoscapeTree = () => {
       
     const  PerInsertAllDBData = async () => {
         try {
-            const db = await openDB(DB_NAME, DB_VERSION);
-            const tableNames = Array.from(db.objectStoreNames); 
+            const tableNames = Object.entries(window.jsonData).map(([key, value]) => key);// Array.from(db.objectStoreNames); 
             let ProvienceIndex = 0
             for (const [index, tableName] of tableNames.entries()) {
                 ProvienceIndex = ProvienceIndex + 1;
@@ -315,8 +306,7 @@ const CytoscapeTree = () => {
                 } else {
                     item_id = "1" + (ProvienceIndex).toString() + "000000" + "0000000000" + "0000000000"
                 }
-    
-                console.log(`第${item_id}个`, `${tableName}的数据。`); 
+
                 options1.push({ value: item_id , label: tableName },);
             }
             setOptions1(options1);
@@ -332,11 +322,10 @@ const CytoscapeTree = () => {
 
     const Selected1Changed = async (selectedOption) => {
         setSelectedOption1(selectedOption); 
-        console.log('当前选中的值:', selectedOption);
         let item_id = selectedOption.value
         let tableName = selectedOption.label
         const items = await readTableData(tableName, item_id);
-        console.log(items)
+        console.log("readTableData",items)
         console.log(options2)
         let comps = [];
         for (let item of items) {

@@ -11,10 +11,6 @@ import UpdateNodeModal from './UpdateNodeModal';
 import { useIndexedDB } from "../../services/useIndexedDB";
 import Select from 'react-select';
 
-import { openDB } from 'idb'; 
-const DB_NAME = 'NewprovinceDB2';
-const DB_VERSION = 3;
-
 cytoscape.use(dagre);
 cytoscape.use(cxtmenu);
 
@@ -256,10 +252,7 @@ const CytoscapeTree = () => {
     
     const readTableData = async (TableName,parentId) => {
         try {
-            const db = await openDB(DB_NAME, DB_VERSION);
-            const tx = db.transaction(TableName, 'readonly');
-            const store = tx.objectStore(TableName);
-            const items = await store.getAll();
+            const items = window.jsonData[TableName];
             return items;
         } catch (error) {
             console.error(`读取${TableName}数据时出错:`, error);
@@ -267,11 +260,9 @@ const CytoscapeTree = () => {
         }
     };
       
-    // 读取所有IndexedDB数据
     const  PerInsertAllDBData = async () => {
         try {
-            const db = await openDB(DB_NAME, DB_VERSION);
-            const tableNames = Array.from(db.objectStoreNames); 
+            const tableNames = Object.entries(window.jsonData).map(([key, value]) => key);// Array.from(db.objectStoreNames); 
             let ProvienceIndex = 0
             for (const [index, tableName] of tableNames.entries()) {
                 ProvienceIndex = ProvienceIndex + 1;
@@ -281,6 +272,7 @@ const CytoscapeTree = () => {
                 } else {
                     item_id = "1" + (ProvienceIndex).toString() + "000000" + "0000000000" + "0000000000"
                 }
+                
                 options1.push({ value: item_id , label: tableName },);
             }
             setOptions1(options1);

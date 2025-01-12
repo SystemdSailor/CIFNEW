@@ -10,7 +10,8 @@ import ArticleList from './components/Articles/ArticleList';
 import HappyFooter from './components/Articles/AppFooter';
 import ArticleDetail from './components/Articles/ArticleDetail';
 import { SearchProvider } from './context/SearchContext';
-import { loadAndStoreData, storeData, initDB } from "./services/AddCompInfo";
+import { loadAndStoreData } from "./services/loadCompInfo";
+
 import CytoscapeTree from './components/Editor/CytoscapeTree_NA';
 
 // 在使用时删除
@@ -27,8 +28,7 @@ const ProtectedRoute = ({ children, isAuthenticated }) => {
 const App = () => {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
   useEffect(() => {
-    loadAndStoreData(); // 如果数据库不存在，执行此函数来初始化数据库并存储数据
-    // gunDBPreInsert.PerInsertAllDBData();
+    loadAndStoreData(); // 加载爬取的上市公司json数据
   }, []);
 
   return (

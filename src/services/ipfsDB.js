@@ -17,7 +17,7 @@ const ipfsService = {
     const data = {
       content,
       timestamp: Date.now(),
-      author: "user.is?.alias",// TODO
+      author: "anonymous",// TODO
       isPublic,
       tagObject,
       category,

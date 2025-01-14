@@ -22,6 +22,11 @@ const Login = ({ setIsAuthenticated }) => {
     }
   };
 
+  const handleAnonymousLogin = () => {
+    setIsAuthenticated(true);
+    navigate('/editor');
+  };
+
   return (
     <div className="min-h-screen flex items-center justify-center bg-gray-50">
       <div className="max-w-md w-full space-y-8 p-8 bg-white rounded-lg shadow-md">
@@ -76,6 +81,14 @@ const Login = ({ setIsAuthenticated }) => {
             登录
           </button>
         </form>
+
+        {/* Anonymous Login Link */}
+        <div type="submit" className="mt-4 text-center">
+          <div className="text-blue-600 hover:text-blue-700" onClick={handleAnonymousLogin}>
+            匿名登录
+          </div>
+        </div>
+
       </div>
     </div>
   );

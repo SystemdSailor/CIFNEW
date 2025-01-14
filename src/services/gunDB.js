@@ -63,21 +63,34 @@ const gunService = {
 
   saveMarkdown: (id, content, isPublic = false, tags = [], category = "uncategorized", title = "wuti") => {
     let tagObject = tags.join('+');
-    console.log("tagObject", tagObject)
-    const data = {
-      content,
-      timestamp: Date.now(),
-      author: user.is?.alias,
-      isPublic,
-      tagObject,
-      category,
-      title
-    };
+    console.log("tagObject", tagObject);
+    let data = null;
+    if (user && user.is && user.is.alias) {
+      data = {
+        content,
+        timestamp: Date.now(),
+        author: user.is.alias,
+        isPublic,
+        tagObject,
+        category,
+        title
+      };
+    }else{
+      data = {
+        content,
+        timestamp: Date.now(),
+        author: 'anonymous',
+        isPublic,
+        tagObject,
+        category,
+        title
+      };
+      gunService.saveMarkdown_anonymous(id,data);
+      return 0;
+    }
 
-    console.log("保存 Markdown 内容:", data)
     const markdownNode = user.get('markdowns').get(id);
     markdownNode.put(data);
-
     // 如果是公开文档，则保存到公共空间
     if (isPublic) {
       gun.get('tname-all-articles').get(id).put(data);
@@ -85,10 +98,13 @@ const gunService = {
       // 如果设为私有，从公共空间移除
       gun.get('tname-all-articles').get(id).put(null);
     }
-
     return new Promise((resolve) => {
       markdownNode.once((savedData) => resolve(savedData));
     });
+  },
+
+  saveMarkdown_anonymous: (id,data) => {
+      gun.get('tname-all-articles').get(id).put(data);
   },
 
   getMarkdowns: () => {

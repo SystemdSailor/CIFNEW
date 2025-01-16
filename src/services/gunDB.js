@@ -2,6 +2,7 @@
 import GUN from 'gun';
 import 'gun/sea';
 import BigInt from 'big-integer';
+import md5 from 'js-md5';// MD5
 
 const gun = GUN({
   peers: [
@@ -105,6 +106,18 @@ const gunService = {
 
   saveMarkdown_anonymous: (id,data) => {
       gun.get('tname-all-articles').get(id).put(data);
+  },
+
+  saveCIDToIPFS: (id, cid) => {
+    if (cid == null) {
+      console.log("值为null或undefined");
+    }else{
+      const now = new Date();
+      const formattedDate = `${now.getFullYear()}-${(now.getMonth() + 1).toString().padStart(2, '0')}-${now.getDate().toString().padStart(2, '0')}-CIFNEW-DATA`;
+      const hash = md5(formattedDate);
+      let data = {id,cid};
+      gun.get(hash).put(data);
+    }
   },
 
   getMarkdowns: () => {

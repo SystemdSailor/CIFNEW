@@ -17,6 +17,7 @@
     "cytoscape-cxtmenu": "^3.5.0",
     "cytoscape-dagre": "^2.5.0",
     "gun": "^0.2020.1240",
+    "js-md5": "^0.8.3",
     "kubo-rpc-client": "^5.0.2",
     "lucide-react": "^0.460.0",
     "react": "^18.3.1",

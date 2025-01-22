@@ -16,6 +16,7 @@ import gunService from '../../services/gunDB';
 import ipfsService from '../../services/ipfsDB';
 import CytoscapeTree from './CytoscapeTree';
 import { useIndexedDB } from "../../services/useIndexedDB";
+import { v4 as uuidv4 } from 'uuid';
 
 const MarkdownEditor = () => {
   let db = useIndexedDB(); 
@@ -82,7 +83,7 @@ const MarkdownEditor = () => {
 
 
   const createNewDocument = () => {
-    const newId = Date.now().toString();
+    const newId = uuidv4();
     setCurrentDocId(newId);
     setContent('');
     setTitle(''); 

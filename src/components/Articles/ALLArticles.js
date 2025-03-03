@@ -39,10 +39,10 @@ const ArticleList = () => {
   }, []);
 
   // 过滤文章
-  const filteredArticles = 
-  articles.filter(article => 
-    article.content && article.content.toLowerCase().includes(searchQuery.toLowerCase()),
-  );
+  const filteredArticles = articles.filter(article => {
+    return searchQuery === '' || (article.content && article.content.toLowerCase().includes(searchQuery.toLowerCase()));
+  });
+  
 
   if (loading) {
     return (

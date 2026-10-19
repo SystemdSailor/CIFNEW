@@ -1,0 +1,6 @@
+{
+  "kuboAddr": "",
+  "port": 3456,
+  "dbName": "cifnew-db",
+  "dbDir": "./orbitdb-data"
+}

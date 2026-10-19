@@ -1,0 +1,54 @@
+{
+  "kuboApiAddr": "/ip4/127.0.0.1/tcp/5001",
+  "port": 3456,
+  "dbs": [
+    {
+      "name": "users",
+      "dir": "./orbitdb-data"
+    },
+    {
+      "name": "companies",
+      "dir": "./orbitdb-data"
+    },
+    {
+      "name": "companyRelated",
+      "dir": "./orbitdb-data"
+    },
+    {
+      "name": "orbitdt",
+      "dir": "./orbitdb-data"
+    },
+    {
+      "name": "2026-07",
+      "dir": "./orbitdb-data"
+    },
+        {
+      "name": "2026-08",
+      "dir": "./orbitdb-data"
+    },
+    {
+      "name": "2026-09",
+      "dir": "./orbitdb-data"
+    },
+    {
+      "name": "2026-10",
+      "dir": "./orbitdb-data"
+    },
+    {
+      "name": "2026-11",
+      "dir": "./orbitdb-data"
+    },
+    {
+      "name": "2026-12",
+      "dir": "./orbitdb-data"
+    },
+    {
+      "name": "CommonQA",
+      "dir": "./orbitdb-data"
+    },
+    {
+      "name": "images",
+      "dir": "./orbitdb-data"
+    }
+  ]
+}

@@ -231,14 +231,6 @@ const CytoscapeTree = () => {
                         setSelectedNodeId(ele.id());
                         setUpdateOpen(true);
                     },
-                },
-        
-                {
-                    content: '添加到侧边栏',
-                    select: function(ele){
-                        console.log(  '添加到侧边栏',ele.data() );
-                        insertNodeIndexDB(ele.data());
-                    }
                 }
             ]
         });
@@ -488,20 +480,6 @@ const CytoscapeTree = () => {
         setIndexedDBDATA(await db.getAll("myIndexedDBDATA"));
     };
 
-    const insertNodeIndexDB = async (data) => {
-        console.log(data);
-        if (!db) {
-            console.error("ON insertNodeIndexDB Database is not initialized yet.");
-            return;
-        }
-        try { 
-          // 添加数据到对象存储
-          await db.put("myIndexedDBDATA", { id: data.id, city: data.city, label:data.label,abbreviation:data.abbreviation });
-        } catch (error) {
-          console.error("ON insertNodeIndexDB Error performing DB operations:", error);
-        }
-    };
-
     return (
         <div style={{ position: 'relative', width: '80%', height: '100vh' }}>
             {/* Searchable dropdowns and button */}
@@ -554,76 +532,7 @@ const CytoscapeTree = () => {
                 parentNodeId={selectedNodeId}
             />
 
-            <div class="btwrapper"  onClick={() => OpenSidebar(!sidebarOpen)}>
-                <div class="svg-shape">
-                    <div class="inner-svg">
-                        {/* <svg width="30px" height="30px" viewBox="0 0 24.00 24.00" fill="none" xmlns="http://www.w3.org/2000/svg" stroke="#54a93d"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round" stroke="#CCCCCC" stroke-width="0.144"></g><g id="SVGRepo_iconCarrier"> <path d="M7.82054 20.7313C8.21107 21.1218 8.84423 21.1218 9.23476 20.7313L15.8792 14.0868C17.0505 12.9155 17.0508 11.0167 15.88 9.84497L9.3097 3.26958C8.91918 2.87905 8.28601 2.87905 7.89549 3.26958C7.50497 3.6601 7.50497 4.29327 7.89549 4.68379L14.4675 11.2558C14.8581 11.6464 14.8581 12.2795 14.4675 12.67L7.82054 19.317C7.43002 19.7076 7.43002 20.3407 7.82054 20.7313Z" fill="#257933"></path> </g></svg>   */}
-                        <svg width="30px" height="30px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" stroke="#000000" stroke-width="0.768"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <path d="M7.82054 20.7313C8.21107 21.1218 8.84423 21.1218 9.23476 20.7313L15.8792 14.0868C17.0505 12.9155 17.0508 11.0167 15.88 9.84497L9.3097 3.26958C8.91918 2.87905 8.28601 2.87905 7.89549 3.26958C7.50497 3.6601 7.50497 4.29327 7.89549 4.68379L14.4675 11.2558C14.8581 11.6464 14.8581 12.2795 14.4675 12.67L7.82054 19.317C7.43002 19.7076 7.43002 20.3407 7.82054 20.7313Z" fill="#ebf0ee"></path> </g></svg>
-                        {/* <svg width="30px" height="30px" viewBox="-2.16 -2.16 28.32 28.32" fill="none" xmlns="http://www.w3.org/2000/svg" stroke="#000000" stroke-width="1.488"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <path d="M7.82054 20.7313C8.21107 21.1218 8.84423 21.1218 9.23476 20.7313L15.8792 14.0868C17.0505 12.9155 17.0508 11.0167 15.88 9.84497L9.3097 3.26958C8.91918 2.87905 8.28601 2.87905 7.89549 3.26958C7.50497 3.6601 7.50497 4.29327 7.89549 4.68379L14.4675 11.2558C14.8581 11.6464 14.8581 12.2795 14.4675 12.67L7.82054 19.317C7.43002 19.7076 7.43002 20.3407 7.82054 20.7313Z" fill="#000000"></path> </g></svg> */}
-                    </div>
-                </div>
-                <div class="rectangle-below"></div>
-            </div>
-           
-            <div
-                style={{
-                    position: 'absolute',
-                    right: 0,
-                    top: 0,
-                    height: '100%',
-                    width: '300px',
-                    backgroundColor: 'white',
-                    boxShadow: '-2px 0 5px rgba(0,0,0,0.1)',
-                    transform: `translateX(${sidebarOpen ? '0' : '100%'})`,
-                    transition: 'transform 0.3s ease-in-out',
-                    padding: '20px',
-                    boxSizing: 'border-box'
-                }}
-            >
 
-                <button
-                    onClick={() => setSidebarOpen(false)}
-                    style={{
-                        position: 'absolute',
-                        top: '10px',
-                        right: '10px',
-                        border: 'none',
-                        background: 'none',
-                        cursor: 'pointer',
-                        fontSize: '20px'
-                    }}
-                >
-                    ×
-                </button>
-
-                <h2>节点列表：</h2>
-                <div className='addedNodesList'>
-                    <div className="space-y-2">
-                        {IndexedDBDATA.map((IndexedDBNODE) => (
-                        <div
-                            key={IndexedDBNODE.id}
-                            className={`p-2 rounded cursor-pointer flex justify-between items-center ${
-                                currentNodeId === IndexedDBNODE.id ? 'bg-blue-100' : 'hover:bg-gray-100'
-                            }`}
-                            onClick={() => setcurrentNodeId(IndexedDBNODE.id)}
-                        >
-                            <div className="flex items-center space-x-2">
-                            <span className="truncate">✓ {IndexedDBNODE.label}:{IndexedDBNODE.id}</span>
-                            </div>
-                            <FontAwesomeIcon 
-                            icon={faTrash} 
-                            className="text-red-500 hover:text-red-700"
-                            onClick={(e) => {
-                                e.stopPropagation();
-                                deleteNodeIndexDB(IndexedDBNODE.id);
-                            }}
-                            />
-                        </div>
-                        ))}
-                    </div>
-                </div>
-
-            </div>
         </div>
     );
 };

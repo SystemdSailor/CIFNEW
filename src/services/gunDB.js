@@ -13,94 +13,48 @@ const gun = GUN({
   localStorage: false // 启用本地存储
 });
 
-// 创建用户实例并启用会话存储
-const user = gun.user().recall({ sessionStorage: true });
-
 // 导出 Gun 相关工具函数
 const gunService = {
-  register: async (username, password) => {
-    return new Promise((resolve, reject) => {
-      user.create(username, password, (ack) => {
-        if (ack.err) {
-          reject(ack.err);
-        } else {
-          resolve(ack);
-        }
-      });
-    });
-  },
-
-  login: async (username, password) => {
-    return new Promise((resolve, reject) => {
-      user.auth(username, password, (ack) => {
-        if (ack.err) {
-          reject(ack.err);
-        } else {
-          resolve(ack);
-        }
-      });
-    });
-  },
-
-  logout: () => {
-    user.leave();
-  },
-
-  saveUserProfile: (data) => {
-    const userProfile = user.get('profile');
-    userProfile.put(data);
-    return new Promise((resolve) => {
-      userProfile.once((savedData) => resolve(savedData));
-    });
-  },
-
-  getUserProfile: () => {
-    return new Promise((resolve) => {
-      user.get('profile').once((data) => {
-        resolve(data);
-      });
-    });
-  },
-
-  saveMarkdown: (id, content, isPublic = false, tags = [], category = "uncategorized", title = "wuti") => {
+  saveMarkdown: (id, content, isPublic = false, tags = [], category = "uncategorized", title = "wuti", companyId = "") => {
     let tagObject = tags.join('+');
     console.log("tagObject", tagObject);
-    let data = null;
-    if (user && user.is && user.is.alias) {
-      data = {
-        content,
-        timestamp: Date.now(),
-        author: user.is.alias,
-        isPublic,
-        tagObject,
-        category,
-        title
-      };
-    }else{
-      data = {
-        content,
-        timestamp: Date.now(),
-        author: 'anonymous',
-        isPublic,
-        tagObject,
-        category,
-        title
-      };
-      gunService.saveMarkdown_anonymous(id,data);
-      return 0;
-    }
+    let data = {
+      content,
+      timestamp: Date.now(),
+      author: 'anonymous',
+      isPublic,
+      tagObject,
+      category,
+      title,
+      companyId
+    };
 
-    const markdownNode = user.get('markdowns').get(id);
-    markdownNode.put(data);
-    // 如果是公开文档，则保存到公共空间
-    if (isPublic) {
-      gun.get('tname-all-articles').get(id).put(data);
-    } else {
-      // 如果设为私有，从公共空间移除
-      gun.get('tname-all-articles').get(id).put(null);
-    }
+    // 保存到公共空间 (since no authentication, everything goes to public)
+    gun.get('tname-all-articles').get(id).put(data);
+    
+    return Promise.resolve(data);
+  },
+
+  getMarkdown: (id) => {
     return new Promise((resolve) => {
-      markdownNode.once((savedData) => resolve(savedData));
+      gun.get('tname-all-articles').get(id).once((data) => {
+        console.log("getMarkdown", id, " is ", data)
+        if (data) {
+          resolve({
+            id: id,
+            ...data
+          });
+        } else {
+          resolve(null);
+        }
+      });
+    });
+  },
+
+  deleteMarkdown: (id) => {
+    return new Promise((resolve) => {
+      gun.get('tname-all-articles').get(id).put(null);
+      resolve(true);
     });
   },
 
@@ -118,37 +72,6 @@ const gunService = {
       let data = {id,cid};
       gun.get(hash).put(data);
     }
-  },
-
-  getMarkdowns: () => {
-    return new Promise((resolve) => {
-      user.get('markdowns').once((data) => {
-        const docs = data ?
-          Object.entries(data)
-            .filter(([key]) => key !== '_') // 过滤掉内部使用的字段
-            .reduce((acc, [key, value]) => {
-              acc[key] = value;
-              return acc;
-            }, {})
-          : {};
-        resolve(docs);
-      });
-    });
-  },
-
-  getMarkdown: (id) => {
-    return new Promise((resolve) => {
-      user.get('markdowns').get(id).once((data) => {
-        resolve(data);
-      });
-    });
-  },
-
-  deleteMarkdown: (id) => {
-    return new Promise((resolve) => {
-      user.get('markdowns').get(id).put(null);
-      resolve(true);
-    });
   },
 
   getAllArticles: () => {
@@ -283,7 +206,7 @@ const gunService = {
   },
 
   setNodeArray: async (parentnodeid, newNodeLabel, name = 'testname') => {
-    newNodeLabel["author"] = user.is?.alias;
+    newNodeLabel["author"] = 'anonymous';
     const jsonString = JSON.stringify(newNodeLabel); console.log(jsonString);
     const arr = [];
     const userData = gun.get(parentnodeid);
@@ -296,7 +219,7 @@ const gunService = {
     return arr;
   },
   setChildernodeArray: async (parentnodeid, newNodeLabel, name = 'testname') => {
-    newNodeLabel["author"] = user.is?.alias;
+    newNodeLabel["author"] = 'anonymous';
     const jsonString = JSON.stringify(newNodeLabel); console.log(jsonString);
     const arr = [];
     const userData = gun.get(parentnodeid);

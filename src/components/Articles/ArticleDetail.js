@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { useParams, Link } from 'react-router-dom';
+import { useParams, useLocation, Link } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faArrowLeft, faUser, faClock, faBuilding, faPaperclip} from '@fortawesome/free-solid-svg-icons';
 import ReactMarkdown from 'react-markdown';
@@ -8,10 +8,19 @@ import gunService from '../../services/gunDB';
 
 const ArticleDetail = () => {
   const { id } = useParams();
+  const location = useLocation();// useLocation() 是 React Router （版本 6）提供的一个 Hook，它的作用是获取当前路由的 location 对象。
   const [article, setArticle] = useState(null);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
+    // 如果从列表页通过 state 传递了文章数据，直接使用
+    if (location.state && location.state.article) {
+      setArticle(location.state.article);
+      setLoading(false);
+      return;
+    }
+
+    // 否则从 GunDB 加载（适用于直接访问 URL 的情况）
     const fetchArticle = async () => {
       try {
         const articleData = await gunService.getArticleById(id);
@@ -24,7 +33,7 @@ const ArticleDetail = () => {
     };
 
     fetchArticle();
-  }, [id]);
+  }, [id, location.state]);
 
   if (loading) {
     return (
@@ -74,7 +83,7 @@ const ArticleDetail = () => {
           <div className="flex items-center">
             <FontAwesomeIcon icon={faBuilding} className="mr-2" />
           
-            <span>{article.category.split('+')[0]+"("+article.category.split('+')[1]+")" || '未分类'}</span>
+            <span>{article.category.type || '未分类'}</span>
           </div>
 
           <div className="flex items-center">

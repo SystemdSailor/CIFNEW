@@ -1,7 +1,7 @@
 /**
  * 法律问答章节配置与查询逻辑
  *
- * 共 7 章（恋爱、理财章节已注释停用，保留数据以便恢复）：出行、租房、校园、职场、消费、保险、其他
+ * 共 9 章（恋爱、理财章节已注释停用，保留数据以便恢复）：出行、租房、校园、职场、入职、离职、消费、保险、其他
  * 问答数据已独立存放于 ./QAData
  *
  * 数据采用 QAcard 方式组织：
@@ -19,6 +19,8 @@ export const LAW_CHAPTERS = [
   { id: 'campus', name: '校园', icon: '🎓', color: 'bg-indigo-500' },
   // { id: 'finance', name: '理财', icon: '💰', color: 'bg-emerald-500' }, // 已注释停用
   { id: 'work', name: '职场', icon: '💼', color: 'bg-cyan-500' },
+  { id: 'onboard', name: '入职', icon: '📝', color: 'bg-pink-500' },
+  { id: 'resign', name: '离职', icon: '🚪', color: 'bg-emerald-500' },
   { id: 'consume', name: '消费', icon: '🛍️', color: 'bg-orange-500' },
   { id: 'insurance', name: '保险', icon: '🛡️', color: 'bg-teal-500' },
   { id: 'other', name: '其他', icon: '📦', color: 'bg-gray-600' },

@@ -50,6 +50,36 @@ function formatNumber(value) {
 
 
 /**
+ * 退休年度排序
+ *
+ * 待遇计发基数不为 null 的年度排前面，
+ * 其余年度排后面；同组内按年份倒序。
+ */
+function sortYearsByTreatmentBase(region) {
+
+  return getRegionYears(region).sort((a, b) => {
+
+    const aHasBase =
+      getTreatmentBase(region, a) !== null &&
+      getTreatmentBase(region, a) !== undefined;
+
+    const bHasBase =
+      getTreatmentBase(region, b) !== null &&
+      getTreatmentBase(region, b) !== undefined;
+
+    if (aHasBase !== bHasBase) {
+
+      return aHasBase ? -1 : 1;
+
+    }
+
+    return Number(b) - Number(a);
+
+  });
+}
+
+
+/**
  * ============================================================
  * Component
  * ============================================================
@@ -80,11 +110,8 @@ function SocialSecurityCalculator() {
    * ==========================================================
    */
 
-  const initialYears =
-    getRegionYears(defaultRegion);
-
   const defaultYear =
-    initialYears[0] || "";
+    sortYearsByTreatmentBase(defaultRegion)[0] || "";
 
   const [year, setYear] =
     useState(defaultYear);
@@ -182,7 +209,7 @@ function SocialSecurityCalculator() {
   const availableYears =
     useMemo(() => {
 
-      return getRegionYears(region);
+      return sortYearsByTreatmentBase(region);
 
     }, [region]);
 
@@ -416,22 +443,12 @@ function SocialSecurityCalculator() {
     setRegion(newRegion);
 
 
-    const years =
-      getRegionYears(newRegion);
-
-
     /**
-     * 自动选择最新年份
+     * 自动选择待遇计发基数不为 null 的最新年度
      */
-    if (years.length > 0) {
-
-      setYear(years[0]);
-
-    } else {
-
-      setYear("");
-
-    }
+    setYear(
+      sortYearsByTreatmentBase(newRegion)[0] || ""
+    );
 
 
     /**

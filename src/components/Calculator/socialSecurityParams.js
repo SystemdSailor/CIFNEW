@@ -183,49 +183,32 @@ export const NATIONAL_PARAMS = {
  */
 
 export const REGIONAL_PARAMS = {
-
+  // 北京
   北京: {
-
     2026: {
       treatmentBase: null,
       source: "",
       publishDate: "",
       note: "",
     },
-
     2025: {
       treatmentBase: 12049,
-      source: "https://www.beijing.gov.cn/zhengce/zhengcefagui/202511/t20251107_4265441.html",
-      publishDate: "",
-      note: "",
-    },
-
-    2024: {
-      treatmentBase: null,
-      source: "",
+      source:
+        "https://www.beijing.gov.cn/zhengce/zhengcefagui/202511/t20251107_4265441.html",
       publishDate: "",
       note: "",
     },
   },
 
-
+  // 上海
   上海: {
-
     2026: {
-      treatmentBase: null,
+      treatmentBase: 12577,
       source: "",
       publishDate: "",
       note: "",
     },
-
     2025: {
-      treatmentBase: null,
-      source: "",
-      publishDate: "",
-      note: "",
-    },
-
-    2024: {
       treatmentBase: null,
       source: "",
       publishDate: "",
@@ -233,481 +216,527 @@ export const REGIONAL_PARAMS = {
     },
   },
 
-
+  // 广东省及深圳市
   广东: {
-
     2026: {
       treatmentBase: null,
       source: "",
       publishDate: "",
       note: "",
     },
-
     2025: {
-      treatmentBase: null,
+      treatmentBase: 9493,
       source: "",
       publishDate: "",
-      note: "",
-    },
-
-    2024: {
-      treatmentBase: null,
-      source: "",
-      publishDate: "",
-      note: "",
+      note: "广东省其他地区参考值，不含深圳。",
     },
   },
 
-
-  浙江: {
-
+  "广东(深圳)": {
     2026: {
       treatmentBase: null,
       source: "",
       publishDate: "",
       note: "",
     },
-
     2025: {
-      treatmentBase: null,
+      treatmentBase: 11293,
       source: "",
       publishDate: "",
-      note: "",
+      note: "深圳市单独列示。",
     },
   },
 
-
-  江苏: {
-
-    2026: {
-      treatmentBase: null,
-      source: "",
-      publishDate: "",
-      note: "",
-    },
-
-    2025: {
-      treatmentBase: null,
-      source: "",
-      publishDate: "",
-      note: "",
-    },
-  },
-
-
-  山东: {
-
-    2026: {
-      treatmentBase: null,
-      source: "",
-      publishDate: "",
-      note: "",
-    },
-
-    2025: {
-      treatmentBase: null,
-      source: "",
-      publishDate: "",
-      note: "",
-    },
-  },
-
-
-  四川: {
-
-    2026: {
-      treatmentBase: null,
-      source: "",
-      publishDate: "",
-      note: "",
-    },
-
-    2025: {
-      treatmentBase: null,
-      source: "",
-      publishDate: "",
-      note: "",
-    },
-  },
-
-
+  // 湖北省及武汉市
   湖北: {
-
     2026: {
       treatmentBase: null,
       source: "",
       publishDate: "",
       note: "",
     },
-
     2025: {
-      treatmentBase: null,
+      treatmentBase: 7300,
       source: "",
       publishDate: "",
-      note: "",
+      note: "武汉以外地区参考值；湖北未全省统一，按7300元估算。",
     },
   },
 
-
-  福建: {
-
+  "湖北(武汉)": {
     2026: {
       treatmentBase: null,
       source: "",
       publishDate: "",
       note: "",
     },
-
     2025: {
-      treatmentBase: null,
+      treatmentBase: 9112,
       source: "",
       publishDate: "",
-      note: "",
+      note: "武汉市单独列示。",
     },
   },
 
-
-  湖南: {
-
+  // 山东省及青岛、菏泽
+  山东: {
     2026: {
       treatmentBase: null,
       source: "",
       publishDate: "",
       note: "",
     },
-
     2025: {
-      treatmentBase: null,
+      treatmentBase: 7831,
       source: "",
       publishDate: "",
-      note: "",
+      note: "山东省其他地区参考值。",
     },
   },
 
-
-  河南: {
-
+  "山东(青岛)": {
     2026: {
       treatmentBase: null,
       source: "",
       publishDate: "",
       note: "",
     },
-
     2025: {
-      treatmentBase: null,
+      treatmentBase: 9010,
       source: "",
       publishDate: "",
-      note: "",
+      note: " ",
     },
   },
 
-
-  河北: {
-
+  "山东(菏泽)": {
     2026: {
       treatmentBase: null,
       source: "",
       publishDate: "",
       note: "",
     },
-
     2025: {
-      treatmentBase: null,
+      treatmentBase: 7506,
       source: "",
       publishDate: "",
-      note: "",
+      note: "菏泽市单独列示。",
     },
   },
 
-
+  // 辽宁省及大连、沈阳
   辽宁: {
-
     2026: {
       treatmentBase: null,
       source: "",
       publishDate: "",
       note: "",
     },
-
     2025: {
+      treatmentBase: 7346,
+      source: "",
+      publishDate: "",
+      note: "辽宁省其他地区参考值。",
+    },
+  },
+
+  "辽宁(大连)": {
+    2026: {
       treatmentBase: null,
       source: "",
       publishDate: "",
       note: "",
     },
+    2025: {
+      treatmentBase: 8956,
+      source: "",
+      publishDate: "",
+      note: "大连市单独列示。",
+    },
   },
 
+  "辽宁(沈阳)": {
+    2026: {
+      treatmentBase: null,
+      source: "",
+      publishDate: "",
+      note: "",
+    },
+    2025: {
+      treatmentBase: 8390,
+      source: "",
+      publishDate: "",
+      note: "沈阳市单独列示。",
+    },
+  },
 
+  // 吉林省及长春
   吉林: {
-
     2026: {
       treatmentBase: null,
       source: "",
       publishDate: "",
       note: "",
     },
-
     2025: {
+      treatmentBase: 7322.08,
+      source: "",
+      publishDate: "",
+      note: "吉林省其他地区参考值。",
+    },
+  },
+
+  "吉林(长春)": {
+    2026: {
       treatmentBase: null,
+      source: "",
+      publishDate: "",
+      note: "",
+    },
+    2025: {
+      treatmentBase: 7978.25,
+      source: "",
+      publishDate: "",
+      note: "长春市单独列示。",
+    },
+  },
+
+  // 其他地区保持原有省级结构
+  天津: {
+    2026: {
+      treatmentBase: null,
+      source: "",
+      publishDate: "",
+      note: "",
+    },
+    2025: {
+      treatmentBase: 9417,
       source: "",
       publishDate: "",
       note: "",
     },
   },
 
+  内蒙古: {
+    2026: {
+      treatmentBase: 8430,
+      source: "",
+      publishDate: "",
+      note: "",
+    },
+  },
 
   黑龙江: {
-
     2026: {
-      treatmentBase: null,
-      source: "",
+      treatmentBase: 7705,
+      source: "https://zc.51shebao.com/detail/840254",
       publishDate: "",
-      note: "",
-    },
-
-    2025: {
-      treatmentBase: null,
-      source: "",
-      publishDate: "",
-      note: "",
+      note: "黑龙江省人社函〔2025〕611号文件",
     },
   },
-
-
-  陕西: {
-
-    2026: {
-      treatmentBase: null,
-      source: "",
-      publishDate: "",
-      note: "",
-    },
-
-    2025: {
-      treatmentBase: null,
-      source: "",
-      publishDate: "",
-      note: "",
-    },
-  },
-
-
-  安徽: {
-
-    2026: {
-      treatmentBase: null,
-      source: "",
-      publishDate: "",
-      note: "",
-    },
-
-    2025: {
-      treatmentBase: null,
-      source: "",
-      publishDate: "",
-      note: "",
-    },
-  },
-
-
-  江西: {
-
-    2026: {
-      treatmentBase: null,
-      source: "",
-      publishDate: "",
-      note: "",
-    },
-
-    2025: {
-      treatmentBase: null,
-      source: "",
-      publishDate: "",
-      note: "",
-    },
-  },
-
-
-  广西: {
-
-    2026: {
-      treatmentBase: null,
-      source: "",
-      publishDate: "",
-      note: "",
-    },
-
-    2025: {
-      treatmentBase: null,
-      source: "",
-      publishDate: "",
-      note: "",
-    },
-  },
-
-
-  海南: {
-
-    2026: {
-      treatmentBase: null,
-      source: "",
-      publishDate: "",
-      note: "",
-    },
-
-    2025: {
-      treatmentBase: null,
-      source: "",
-      publishDate: "",
-      note: "",
-    },
-  },
-
-
-  重庆: {
-
-    2026: {
-      treatmentBase: null,
-      source: "",
-      publishDate: "",
-      note: "",
-    },
-
-    2025: {
-      treatmentBase: null,
-      source: "",
-      publishDate: "",
-      note: "",
-    },
-  },
-
-
-  贵州: {
-
-    2026: {
-      treatmentBase: null,
-      source: "",
-      publishDate: "",
-      note: "",
-    },
-
-    2025: {
-      treatmentBase: null,
-      source: "",
-      publishDate: "",
-      note: "",
-    },
-  },
-
-
-  云南: {
-
-    2026: {
-      treatmentBase: null,
-      source: "",
-      publishDate: "",
-      note: "",
-    },
-
-    2025: {
-      treatmentBase: null,
-      source: "",
-      publishDate: "",
-      note: "",
-    },
-  },
-
 
   西藏: {
-
     2026: {
-      treatmentBase: null,
-      source: "",
-      publishDate: "",
-      note: "",
-    },
-
-    2025: {
-      treatmentBase: null,
+      treatmentBase: 11954,
       source: "",
       publishDate: "",
       note: "",
     },
   },
 
-
-  甘肃: {
-
+  贵州: {
     2026: {
-      treatmentBase: null,
-      source: "",
-      publishDate: "",
-      note: "",
-    },
-
-    2025: {
-      treatmentBase: null,
+      treatmentBase: 7376.75,
       source: "",
       publishDate: "",
       note: "",
     },
   },
-
 
   青海: {
-
     2026: {
       treatmentBase: null,
       source: "",
       publishDate: "",
       note: "",
     },
-
     2025: {
-      treatmentBase: null,
+      treatmentBase: 9056,
       source: "",
       publishDate: "",
       note: "",
     },
   },
 
-
-  宁夏: {
-
+  江苏: {
     2026: {
       treatmentBase: null,
       source: "",
       publishDate: "",
       note: "",
     },
-
     2025: {
-      treatmentBase: null,
+      treatmentBase: 8917,
       source: "",
       publishDate: "",
       note: "",
     },
   },
 
+  浙江: {
+    2026: {
+      treatmentBase: null,
+      source: "",
+      publishDate: "",
+      note: "",
+    },
+    2025: {
+      treatmentBase: 8433,
+      source: "",
+      publishDate: "",
+      note: "",
+    },
+  },
+
+  四川: {
+    2026: {
+      treatmentBase: null,
+      source: "",
+      publishDate: "",
+      note: "",
+    },
+    2025: {
+      treatmentBase: 8462,
+      source: "",
+      publishDate: "",
+      note: " ",
+    },
+  },
 
   新疆: {
+    2026: {
+      treatmentBase: 8744,
+      source: "https://news.qq.com/rain/a/20260912A0845X00",
+      publishDate: "",
+      note: " ",
+    },
+    2025: {
+      treatmentBase: 8448,
+      source: "",
+      publishDate: "",
+      note: " ",
+    },
+  },
 
+  宁夏: {
     2026: {
       treatmentBase: null,
       source: "",
       publishDate: "",
       note: "",
     },
-
     2025: {
-      treatmentBase: null,
+      treatmentBase: 8366,
       source: "",
       publishDate: "",
       note: "",
     },
   },
 
+  云南: {
+    2026: {
+      treatmentBase: null,
+      source: "",
+      publishDate: "",
+      note: "",
+    },
+    2025: {
+      treatmentBase: 8265,
+      source: "",
+      publishDate: "",
+      note: "",
+    },
+  },
+
+  重庆: {
+    2026: {
+      treatmentBase: null,
+      source: "",
+      publishDate: "",
+      note: "",
+    },
+    2025: {
+      treatmentBase: 8240,
+      source: "",
+      publishDate: "",
+      note: "",
+    },
+  },
+
+  海南: {
+    2026: {
+      treatmentBase: null,
+      source: "",
+      publishDate: "",
+      note: "",
+    },
+    2025: {
+      treatmentBase: 8188,
+      source: "",
+      publishDate: "",
+      note: "",
+    },
+  },
+
+  安徽: {
+    2026: {
+      treatmentBase: null,
+      source: "",
+      publishDate: "",
+      note: "",
+    },
+    2025: {
+      treatmentBase: 7999,
+      source: "",
+      publishDate: "",
+      note: "",
+    },
+  },
+
+  福建: {
+    2026: {
+      treatmentBase: null,
+      source: "",
+      publishDate: "",
+      note: "",
+    },
+    2025: {
+      treatmentBase: 7932,
+      source: "",
+      publishDate: "",
+      note: "",
+    },
+  },
+
+  陕西: {
+    2026: {
+      treatmentBase: null,
+      source: "",
+      publishDate: "",
+      note: "",
+    },
+    2025: {
+      treatmentBase: 7881,
+      source: "",
+      publishDate: "",
+      note: "",
+    },
+  },
+
+  甘肃: {
+    2026: {
+      treatmentBase: null,
+      source: "",
+      publishDate: "",
+      note: "",
+    },
+    2025: {
+      treatmentBase: 7746,
+      source: "",
+      publishDate: "",
+      note: "",
+    },
+  },
+
+  湖南: {
+    2026: {
+      treatmentBase: null,
+      source: "",
+      publishDate: "",
+      note: "",
+    },
+    2025: {
+      treatmentBase: 7694,
+      source: "",
+      publishDate: "",
+      note: "",
+    },
+  },
+
+  河北: {
+    2026: {
+      treatmentBase: null,
+      source: "",
+      publishDate: "",
+      note: "",
+    },
+    2025: {
+      treatmentBase: 7410,
+      source: "",
+      publishDate: "",
+      note: "",
+    },
+  },
+
+  山西: {
+    2026: {
+      treatmentBase: null,
+      source: "",
+      publishDate: "",
+      note: "",
+    },
+    2025: {
+      treatmentBase: 7253,
+      source: "",
+      publishDate: "",
+      note: " ",
+    },
+  },
+
+  江西: {
+    2026: {
+      treatmentBase: null,
+      source: "",
+      publishDate: "",
+      note: "",
+    },
+    2025: {
+      treatmentBase: 7054,
+      source: "",
+      publishDate: "",
+      note: "",
+    },
+  },
+
+  广西: {
+    2026: {
+      treatmentBase: null,
+      source: "",
+      publishDate: "",
+      note: "",
+    },
+    2025: {
+      treatmentBase: 6983,
+      source: "",
+      publishDate: "",
+      note: "",
+    },
+  },
+
+  河南: {
+    2026: {
+      treatmentBase: null,
+      source: "",
+      publishDate: "",
+      note: "",
+    },
+    2025: {
+      treatmentBase: 6738,
+      source: "",
+      publishDate: "",
+      note: "",
+    },
+  },
 };
 
 

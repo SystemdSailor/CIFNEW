@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import InterestRateTooltip from './InterestRateTooltip';
+import NewsTooltip from './NewsTooltip';
 import ArchiveTooltip from './ArchiveTooltip';
 import Button from '../ui/Button';
 import {  useNavigate } from 'react-router-dom';
@@ -25,7 +25,7 @@ const BigSearch = () => {
   const [selectedIndustry, setSelectedIndustry] = useState('');
   const [selectedCity, setSelectedCity] = useState('');
   const [selectedCityInput, setSelectedCityInput] = useState('');
-  const [showRateTooltip, setShowRateTooltip] = useState(false);
+  const [showNews, setShowNews] = useState(false);
   const [cityIsInput, setCityIsInput] = useState(false);
 
   const handleSearch = () => {
@@ -83,17 +83,16 @@ const BigSearch = () => {
             </Button>
             <div className="relative">
               <Button
-                // onClick={()=>{navigate('/articles');}} 
                 variant="ghost"
-                className={`hover:bg-white/20 ${showRateTooltip ? (isScrolled ? 'bg-gray-100' : 'bg-white/20') : ''} ${isScrolled ? 'text-black hover:bg-gray-100' : 'text-white'}`}
-                onClick={() => setShowRateTooltip(!showRateTooltip)}
+                className={`hover:bg-white/20 ${showNews ? (isScrolled ? 'bg-gray-100' : 'bg-white/20') : ''} ${isScrolled ? 'text-black hover:bg-gray-100' : 'text-white'}`}
+                onClick={() => setShowNews(!showNews)}
               >
-                <FontAwesomeIcon icon={faNewspaper} className="mr-2" /> 探索
+                <FontAwesomeIcon icon={faNewspaper} className="mr-2" /> 新闻
               </Button>
-              {showRateTooltip && (
+              {showNews && (
                 <>
-                  <div className="fixed inset-0 z-[9998]" onClick={() => setShowRateTooltip(false)}></div>
-                  <InterestRateTooltip />
+                  <div className="fixed inset-0 z-[9998]" onClick={() => setShowNews(false)}></div>
+                  <NewsTooltip onClose={() => setShowNews(false)} />
                 </>
               )}
             </div>

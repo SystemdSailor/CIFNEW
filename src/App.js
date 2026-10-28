@@ -14,6 +14,7 @@ import CompanySearchBar from './components/Home/CompanySearchBar';
 import DestinationSection from './components/Home/DestinationSection';
 import CompanyList from './components/Home/CompanyList';
 import CompanyDetail from './components/Home/CompanyDetail';
+import HomeTour from './components/Home/HomeTour';
 import StandardizePage from './components/Standardization/StandardizePage';
 import NotFoundPage from './components/Home/NotFoundPage';
 import { mockCompanies as initialCompanies } from './components/data/transformed_companies';
@@ -137,6 +138,8 @@ const AppRoutes = () => {
                       currentPage={listCurrentPage}
                       onPageChange={setListCurrentPage}
                     />
+                    {/* 首页新手引导：仅列表视图挂载，详情页自动卸载 */}
+                    <HomeTour />
                     {/* <ALLArticles /> */}
                   </>
                 )}

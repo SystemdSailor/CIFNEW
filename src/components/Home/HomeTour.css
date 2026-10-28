@@ -1,0 +1,124 @@
+/* 首页引导样式：只作用于 HomeTour 自己的按钮与 Intro.js 浮层 */
+
+.home-tour-trigger {
+  position: fixed;
+  right: 24px;
+  bottom: 24px;
+  z-index: 60;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 16px;
+  border: 1px solid #a7f3d0;
+  border-radius: 9999px;
+  background: rgba(255, 255, 255, 0.96);
+  color: #047857;
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 1;
+  box-shadow: 0 10px 25px rgba(15, 23, 42, 0.16);
+  cursor: pointer;
+  transition: background-color 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.home-tour-trigger:hover {
+  background: #ecfdf5;
+  transform: translateY(-1px);
+  box-shadow: 0 14px 30px rgba(15, 23, 42, 0.2);
+}
+
+.home-tour-trigger:focus-visible {
+  outline: 2px solid #10b981;
+  outline-offset: 2px;
+}
+
+.home-tour-trigger__icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 22px;
+  height: 22px;
+  border-radius: 9999px;
+  background: #10b981;
+  color: #ffffff;
+  font-size: 13px;
+  font-weight: 700;
+}
+
+/* Intro.js 浮层主题（覆盖在 introjs.css 之后加载） */
+.home-tour-tooltip {
+  --introjs-bg: #ffffff;
+  --introjs-color: #1f2937;
+  --introjs-btn-bg: #f0fdf4;
+  --introjs-btn-color: #047857;
+  --introjs-btn-border: #a7f3d0;
+  --introjs-btn-hover-bg: #d1fae5;
+  --introjs-btn-hover-color: #065f46;
+  --introjs-btn-focus-bg: #d1fae5;
+  --introjs-btn-focus-color: #065f46;
+  --introjs-btn-active-bg: #a7f3d0;
+  --introjs-btn-active-color: #064e3b;
+  --introjs-btn-active-border: #34d399;
+  --introjs-btn-textShadow: transparent;
+  border-radius: 12px;
+  box-shadow: 0 20px 45px rgba(15, 23, 42, 0.25);
+}
+
+.home-tour-tooltip .introjs-tooltiptext {
+  padding: 18px 20px 12px;
+  font-size: 14px;
+  line-height: 1.7;
+}
+
+.home-tour-tooltip .introjs-tooltip-title {
+  font-size: 16px;
+  font-weight: 700;
+  color: #065f46;
+}
+
+.home-tour-tooltip .introjs-progress {
+  height: 6px;
+  background-color: #ecfdf5;
+  border-radius: 9999px;
+}
+
+.home-tour-tooltip .introjs-progressbar {
+  background-color: #10b981;
+  border-radius: 9999px;
+}
+
+.home-tour-tooltip .introjs-button {
+  border-radius: 8px;
+  text-shadow: none;
+  font-weight: 600;
+}
+
+.home-tour-tooltip .introjs-nextbutton {
+  background-color: #059669;
+  border-color: #059669;
+  color: #ffffff;
+  text-shadow: none;
+}
+
+.home-tour-tooltip .introjs-nextbutton:hover,
+.home-tour-tooltip .introjs-nextbutton:focus {
+  background-color: #047857;
+  border-color: #047857;
+  color: #ffffff;
+}
+
+.home-tour-tooltip .introjs-skipbutton {
+  color: #6b7280;
+}
+
+@media (max-width: 640px) {
+  .home-tour-trigger {
+    right: 16px;
+    bottom: 16px;
+    padding: 10px;
+  }
+
+  .home-tour-trigger__label {
+    display: none;
+  }
+}
